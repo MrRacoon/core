@@ -13,11 +13,15 @@ const HOME_DIR = os.homedir();
 
 const executeInfoText = fs.readFileSync(path.join(HOME_DIR, EXECUTE_INFO_PATH)).toString();
 const executablePath = executeInfoText.match(/^\s*([\w.-]+)\s*=\s*(.*)?\s*$/m)[2];
+debug(`executablePath: ${executablePath}`);
 
 const parsedPath = executablePath.split(path.sep);
 const execName = parsedPath[parsedPath.length - 1];
+debug(`parsedPath: ${parsedPath}`);
+debug(`execName: ${execName}`);
 
 const basePath = parsedPath.slice(0, parsedPath.findIndex(s => s === 'StarCraft II') + 1).join(path.sep);
+debug(`basePath: ${basePath}`);
 
 /** @type {Launcher} */
 async function launcher(options = {}) {
